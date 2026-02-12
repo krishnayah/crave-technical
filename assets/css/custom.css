@@ -1,0 +1,516 @@
+/* Crave Technical Documentation Custom Styles */
+
+/* Import elegant serif and monospace fonts */
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  /* Light mode colors - Super light cream with dark blue/black text */
+  --color-light-bg: #FAF8F3;
+  --color-light-surface: #F5F2EC;
+  --color-light-text: #000000;
+  --color-light-text-header: #0A1628;
+  --color-light-text-secondary: #4a4a4a;
+  --color-light-border: #E5E2DC;
+
+  /* Dark mode colors - Warm charcoal to complement the cream light mode */
+  --color-dark-bg: #1C1917;
+  --color-dark-surface: #252220;
+  --color-dark-card: #2E2A27;
+  --color-dark-text: #E7E5E4;
+  --color-dark-text-header: #F5F5F4;
+  --color-dark-text-secondary: #A8A29E;
+  --color-dark-border: #3D3835;
+
+  /* Wine accent color */
+  --color-wine: #8b2b47;
+  --color-wine-light: #a53b5a;
+  --color-wine-dark: #6b1f35;
+
+  /* Dark mode accent - warm rose, high contrast on charcoal */
+  --color-dark-accent: #D4727E;
+  --color-dark-accent-hover: #E08A94;
+
+  /* Fonts */
+  --font-serif: 'Crimson Pro', Georgia, serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Light mode - Super light cream */
+html {
+  --bg-primary: var(--color-light-bg);
+  --bg-secondary: var(--color-light-surface);
+  --text-primary: var(--color-light-text);
+  --text-header: var(--color-light-text-header);
+  --text-secondary: var(--color-light-text-secondary);
+  --border-color: var(--color-light-border);
+  --accent-primary: var(--color-wine);
+  --accent-hover: var(--color-wine-dark);
+}
+
+/* Dark mode - Warm charcoal */
+html.dark {
+  --bg-primary: var(--color-dark-bg);
+  --bg-secondary: var(--color-dark-surface);
+  --bg-card: var(--color-dark-card);
+  --text-primary: var(--color-dark-text);
+  --text-header: var(--color-dark-text-header);
+  --text-secondary: var(--color-dark-text-secondary);
+  --border-color: var(--color-dark-border);
+  --accent-primary: var(--color-dark-accent);
+  --accent-hover: var(--color-dark-accent-hover);
+}
+
+/* Typography overrides */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Ensure body text is pure black in light mode */
+html:not(.dark) body,
+html:not(.dark) p,
+html:not(.dark) li,
+html:not(.dark) .prose {
+  color: #000000;
+}
+
+/* Elegant serif headings */
+h1, h2, h3, h4, h5, h6,
+.hextra-heading {
+  font-family: var(--font-serif) !important;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-header, var(--color-light-text-header)) !important;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: 2.25rem;
+  margin-top: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Monospace for code and technical elements */
+code, pre, kbd, samp,
+.hextra-code,
+.filename {
+  font-family: var(--font-mono) !important;
+  font-size: 0.9em;
+}
+
+/* Code blocks with dark background */
+pre {
+  background: var(--bg-card, var(--bg-secondary)) !important;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.25rem;
+  overflow-x: auto;
+}
+
+pre code {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+/* Inline code */
+:not(pre) > code {
+  background: var(--bg-secondary);
+  color: var(--accent-primary);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+}
+
+/* Wine accent for links */
+a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+/* Sidebar navigation */
+.hextra-sidebar {
+  background: var(--bg-secondary);
+  border-right: 1px solid var(--border-color);
+}
+
+.hextra-sidebar-list a {
+  font-family: var(--font-sans);
+  color: var(--text-secondary);
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.hextra-sidebar-list a:hover,
+.hextra-sidebar-list a.active {
+  color: var(--accent-primary);
+  background-color: var(--bg-card, var(--bg-primary));
+}
+
+/* Cards and containers */
+.hextra-card,
+.hextra-feature-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.hextra-card:hover,
+.hextra-feature-card:hover {
+  border-color: var(--accent-primary);
+  box-shadow: 0 4px 12px rgba(139, 43, 71, 0.1);
+}
+
+html.dark .hextra-card:hover,
+html.dark .hextra-feature-card:hover {
+  box-shadow: 0 4px 12px rgba(139, 43, 71, 0.2);
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-family: var(--font-sans);
+}
+
+thead {
+  background: var(--bg-secondary);
+  border-bottom: 2px solid var(--border-color);
+}
+
+th {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  color: var(--text-header, var(--text-primary));
+}
+
+td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+tbody tr:hover {
+  background: var(--bg-secondary);
+}
+
+/* Blockquotes */
+blockquote {
+  border-left: 4px solid var(--accent-primary);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  color: var(--text-secondary);
+  font-style: italic;
+  background: var(--bg-secondary);
+  padding: 1rem 1.5rem;
+  border-radius: 0 8px 8px 0;
+}
+
+/* Buttons - themed */
+button, .button {
+  font-family: var(--font-sans);
+  background: var(--accent-primary);
+  color: white;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button:hover, .button:hover {
+  background: var(--accent-hover);
+}
+
+/* Custom CTA buttons that match the wine theme */
+.crave-btn-primary {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 1rem;
+  background: var(--color-wine);
+  color: #ffffff !important;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  text-decoration: none !important;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.crave-btn-primary:hover {
+  background: var(--color-wine-dark);
+  box-shadow: 0 4px 12px rgba(139, 43, 71, 0.25);
+  text-decoration: none !important;
+  color: #ffffff !important;
+}
+
+html.dark .crave-btn-primary {
+  background: var(--color-dark-accent);
+  color: #1C1917 !important;
+}
+
+html.dark .crave-btn-primary:hover {
+  background: var(--color-dark-accent-hover);
+  color: #1C1917 !important;
+  box-shadow: 0 4px 16px rgba(212, 114, 126, 0.3);
+}
+
+.crave-btn-secondary {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 1rem;
+  background: transparent;
+  color: var(--color-wine) !important;
+  padding: 0.7rem 1.75rem;
+  border-radius: 9999px;
+  border: 1.5px solid var(--color-wine);
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.crave-btn-secondary:hover {
+  background: var(--color-wine);
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+html.dark .crave-btn-secondary {
+  color: var(--color-dark-accent) !important;
+  border-color: var(--color-dark-accent);
+}
+
+html.dark .crave-btn-secondary:hover {
+  background: var(--color-dark-accent);
+  color: #1C1917 !important;
+}
+
+/* Theme toggle - fix dark mode mismatch */
+html.dark .hextra-theme-toggle {
+  color: var(--color-dark-text-secondary);
+}
+
+html.dark .hextra-theme-toggle:hover {
+  background: var(--color-dark-surface);
+  color: var(--color-dark-text);
+}
+
+html.dark .hextra-theme-toggle-options {
+  background: var(--color-dark-card);
+  border: 1px solid var(--color-dark-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+html.dark .hextra-theme-toggle-options p {
+  color: var(--color-dark-text);
+}
+
+html.dark .hextra-theme-toggle-options p:hover {
+  background: var(--color-dark-surface);
+  color: var(--color-dark-accent);
+}
+
+/* Search */
+.hextra-search-input {
+  font-family: var(--font-sans);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.hextra-search-input:focus {
+  border-color: var(--accent-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(139, 43, 71, 0.1);
+}
+
+/* Navbar */
+.hextra-navbar {
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+  backdrop-filter: blur(10px);
+}
+
+.hextra-navbar-title {
+  font-family: var(--font-serif) !important;
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--text-header, var(--text-primary));
+}
+
+/* Mermaid diagrams */
+.mermaid {
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+}
+
+/* Homepage hero section */
+.hextra-hero {
+  padding: 4rem 2rem;
+}
+
+.hextra-hero h1 {
+  font-size: 4rem;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.hextra-hero p {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+}
+
+/* Dark mode scrollbar */
+html.dark ::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: var(--color-dark-card);
+  border-radius: 6px;
+  border: 2px solid var(--bg-primary);
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+/* Dark mode text adjustments */
+html.dark p,
+html.dark li,
+html.dark .prose {
+  color: var(--color-dark-text);
+}
+
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6 {
+  color: var(--color-dark-text-header) !important;
+}
+
+html.dark strong {
+  color: var(--color-dark-text-header);
+}
+
+html.dark td,
+html.dark th {
+  color: var(--color-dark-text);
+}
+
+html.dark thead {
+  background: var(--color-dark-surface);
+}
+
+html.dark tbody tr:hover {
+  background: var(--color-dark-surface);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.875rem;
+  }
+
+  .hextra-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hextra-hero p {
+    font-size: 1.125rem;
+  }
+}
+
+/* Footer */
+.hextra-footer {
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+}
+
+/* Improve readability */
+.prose, .hextra-content {
+  line-height: 1.7;
+  font-size: 1.0625rem;
+}
+
+.prose p {
+  margin-bottom: 1.25rem;
+}
+
+/* Lists */
+ul, ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* Horizontal rules */
+hr {
+  border: none;
+  border-top: 1px solid var(--border-color);
+  margin: 1.75rem 0;
+}
+
+/* Badges and labels */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: var(--accent-primary);
+  color: white;
+}

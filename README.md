@@ -1,79 +1,145 @@
-# Hextra Starter Template
+# Crave Technical Documentation
 
-[![Deploy Hugo site to Pages](https://github.com/imfing/hextra-starter-template/actions/workflows/pages.yaml/badge.svg)](https://github.com/imfing/hextra-starter-template/actions/workflows/pages.yaml)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/6e83fd88-5ffe-4808-9689-c0f3b100bfe3/deploy-status)](https://app.netlify.com/sites/hextra-starter-template/deploys)
-![Vercel Deployment Status](https://img.shields.io/github/deployments/imfing/hextra-starter-template/production?logo=vercel&logoColor=white&label=vercel&labelColor=black&link=https%3A%2F%2Fhextra-starter-template.vercel.app%2F)
+> **From idea to recipe** — Technical documentation for the AI-powered recipe management iOS app.
 
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/yourusername/crave-technical)
 
-🐣 Minimal template for getting started with [Hextra](https://github.com/imfing/hextra)
+## Overview
 
-![hextra-template](https://github.com/imfing/hextra-starter-template/assets/5097752/c403b9a9-a76c-47a6-8466-513d772ef0b7)
+This repository contains the complete technical documentation for **Crave**, an iOS app that transforms recipe discovery and management using AI.
 
-[🌐 Demo ↗](https://imfing.github.io/hextra-starter-template/)
+**Live Documentation:** [crave-docs.netlify.app](https://crave-docs.netlify.app) *(update with your URL)*
 
-## Quick Start
+## Features
 
-Use this template to create your own repository:
+- **Elegant Design**: Serif headings (Crimson Pro) with monospace code blocks (IBM Plex Mono)
+- **Dark Mode**: Purple onyx midnight theme with wine-colored accents
+- **Responsive**: Mobile-friendly documentation
+- **Search**: Full-text search across all documentation
+- **Diagrams**: Mermaid support for architecture diagrams
 
-<img src="https://docs.github.com/assets/cb-77734/mw-1440/images/help/repository/use-this-template-button.webp" width=400 />
+## Documentation Structure
 
-You can also quickly start developing using the following online development environment:
+```
+content/
+├── _index.md                  # Homepage
+├── docs/
+│   ├── _index.md             # Documentation hub
+│   ├── overview.md           # What is Crave?
+│   ├── tech-stack.md         # Technologies & frameworks
+│   ├── architecture.md       # System design & patterns
+│   ├── data-flow.md          # How data moves through the system
+│   ├── revenuecat.md         # Subscription implementation
+│   ├── design-system.md      # UI/UX design tokens
+│   ├── backend-api.md        # API endpoints & contracts
+│   ├── configuration.md      # Environment setup
+│   └── deployment.md         # Deployment guides
+```
 
-- [GitHub Codespaces](https://github.com/codespaces)
+## Tech Stack
 
-    [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/imfing/hextra-starter-template)
-
-    Create a new codespace and follow the [Local Development](#local-development) to launch the preview
-
-
-## Deployment
-
-### GitHub Pages
-
-A GitHub Actions workflow is provided in [`.github/workflows/pages.yaml`](./.github/workflows/pages.yaml) to [publish to GitHub Pages](https://github.blog/changelog/2022-07-27-github-pages-custom-github-actions-workflows-beta/) for free. 
-
-For details, see [Publishing with a custom GitHub Actions workflow](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow).
-
-Note: in the settings, make sure to set the Pages deployment source to **GitHub Actions**:
-
-<img src="https://github.com/imfing/hextra-starter-template/assets/5097752/99676430-884e-42ab-b901-f6534a0d6eee" width=600 />
-
-[Run the workflow manually](https://docs.github.com/en/actions/using-workflows/manually-running-a-workflow) if it's not triggered automatically.
-
-### Netlify
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/imfing/hextra-starter-template)
-
-### Vercel
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fimfing%2Fhextra-starter-template&env=HUGO_VERSION)
-
-Override the configuration:
-
-<img src="https://github.com/imfing/hextra-starter-template/assets/5097752/e2e3cecd-c884-47ec-b064-14f896fee08d" width=600 />
+- **Framework**: [Hugo](https://gohugo.io/) (Go-based static site generator)
+- **Theme**: [Hextra](https://github.com/imfing/hextra) (modern documentation theme)
+- **Fonts**: Crimson Pro (serif), IBM Plex Mono (monospace), Inter (sans-serif)
+- **Deployment**: Netlify / GitHub Pages / Vercel
 
 ## Local Development
 
-Pre-requisites: [Hugo](https://gohugo.io/getting-started/installing/), [Go](https://golang.org/doc/install) and [Git](https://git-scm.com)
+### Prerequisites
 
-```shell
-# Clone the repo
-git clone https://github.com/imfing/hextra-starter-template.git
+- [Hugo](https://gohugo.io/installation/) v0.155.2 or later (extended version)
+- [Go](https://golang.org/doc/install) 1.21+
+- [Git](https://git-scm.com)
 
-# Change directory
-cd hextra-starter-template
+### Quick Start
 
-# Start the server
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/crave-technical.git
+cd crave-technical
+
+# Install dependencies
 hugo mod tidy
-hugo server --logLevel debug --disableFastRender -p 1313
+
+# Start development server
+hugo server --buildDrafts --disableFastRender -p 1313
 ```
 
-### Update theme
+Visit [http://localhost:1313](http://localhost:1313) to view the documentation.
 
-```shell
-hugo mod get -u
-hugo mod tidy
+## Customization
+
+### Color Theme
+
+The custom dark mode theme is defined in `assets/css/custom.css`:
+
+```css
+/* Dark mode - Purple Onyx Midnight */
+--color-dark-bg: #1a1625;
+--color-dark-surface: #231e31;
+--color-dark-card: #2d2640;
+
+/* Wine accent color */
+--color-wine: #8b2b47;
 ```
 
-See [Update modules](https://gohugo.io/hugo-modules/use-modules/#update-modules) for more details.
+### Typography
 
+Headings use **Crimson Pro** (elegant serif), while code blocks use **IBM Plex Mono** for technical readability.
+
+### Configuration
+
+Edit `hugo.yaml` to customize:
+- Site title and description
+- Navigation menu
+- Footer content
+- Theme settings
+
+## Deployment
+
+### Netlify
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/yourusername/crave-technical)
+
+The `netlify.toml` file is already configured. Just connect your repository.
+
+### GitHub Pages
+
+1. Enable GitHub Pages in repository settings
+2. Set deployment source to "GitHub Actions"
+3. The workflow in `.github/workflows/pages.yaml` will build and deploy automatically
+
+### Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fyourusername%2Fcrave-technical)
+
+Set `HUGO_VERSION` environment variable to `0.155.2` or later.
+
+## Contributing
+
+Contributions are welcome! Please:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test locally with `hugo server`
+5. Submit a pull request
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+## About Crave
+
+Crave is an AI-powered recipe management iOS app that lets you:
+- Import recipes from any website or video
+- Scan ingredients with your camera
+- Manage your pantry intelligently
+- Build smart grocery lists
+- Discover community recipes
+
+**From idea to recipe** — that's the Crave promise.
+
+---
+
+Built with [Hugo](https://gohugo.io/) and [Hextra](https://github.com/imfing/hextra)
