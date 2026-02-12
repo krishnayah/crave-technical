@@ -54,4 +54,4 @@ params:
   theme:
     # light | dark | system
     default: light
-    displayToggle: true
+    displayToggle: false
