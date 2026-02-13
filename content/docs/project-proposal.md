@@ -1,35 +1,77 @@
-# Inspiration
-We were inspired to create Crave through our own experiences as college students and a shared love for food and cooking. With our busy schedules, its difficult to find time to cook our saved recipes, so they sit in our phones, forgotten. We wanted to create a solution that would simplify the process of turning online food videos into a delicious meal on our dinner table.
-# What it does
+# CRAVE — FROM CRAVING TO COOKING
 
-Crave makes the cooking process easy. We track your pantry items, allergies, creating a tailored and personal experience. We also provide video and link extraction, allowing users to import recipes with just a click of the share button. If you aren't satisfied with what you find online, our in-app chef can spice up your recipe, or make an entirely new one! Crave gives you access to delicous, homecooked meals without any extras stress or effort.
+_Written Proposal for the RevenueCat Shipyard 2026 Hackathon_
 
-# Challenges we ran into
+---
 
-We really improved with our time management and coordination as a team. As engineering students in university, we had to balance exams & long homeworks with development, testing, and working on our final app presentation. The long nights in lecture halls at 3am created cool moments where we hit 'flow state' and learned to play off eachother's strengths.
+## The Problem
 
-We ran into many challenges with creating an optimal user flow for features like pantry scanning. We kept asking ourselves questions like "should the pantry scan be separate from the grocery list?" and "what's the most optimal way to onboard each user?"
+Food inspiration is everywhere. From YouTube videos, TikToks, Instagram reels, NYT Cooking articles, people are constantly saving recipes they swear they'll make "next week." They almost never do.
 
-Our entire goal was to create an app where users didn't have to think about planning their next meal, and we wanted to get them using the product as soon as possible. We went through nearly a dozen iterations of various user interfaces, menus, and button layouts to try to figure what felt 'simply right' for anyone to use. This took a while, and was a significant challenge, but it ended up making our app incredibly user-friendly and intutive in the process.
+We know this firsthand. We (David, Jordan, and Kyle) are college students at Rensselaer Polytechnic Institute living off-campus with no meal plan. We send each other cooking videos *constantly*, but we forget them just as fast. Vegetables rot in the back of the fridge. Duplicate groceries pile up. Dinner ends up being rice and whatever protein we can find.
 
-# Accomplishments that we're proud of
-We're incredibly proud of integrating our pantry inventory system throughout the entire app, and hooking it up to our custom 'Spice it Up' feature. One issue that we have faced as students from predominantly Asian backgrounds is that our parents often prefer 'spicier' foods. By modifying recipes to follow what we have in our house, we can reduce food waste while also creating some amazing fusion dishes.
+## Built for a broader audience
+This isn't just a college student problem. Families waste food because no one knows what's already in the pantry. 
 
-We're also really happy with our our presentation video turned out. Inspired by videos from Cluely and Anthropic, we went for an organic feeling ad that showed our product in actual use scenarios. We didn't want a scenario where interested customers sat through 3 minutes of screen recordings and monotone voice overs. We decided to put a lot of time into storyboarding and acting out interesting scenes for our video.
+Our moms all personally struggle with the same five-meal rotation because turning a recipe idea into an actual grocery run feels like too much friction. After coming home from work, they just want to relax and not stress about finding good recipes. (In fact, some of our moms send us TikTok cooking reels!)
 
-# What we learned
+We've optimized our app for college students and younger parents (18-34) who oftentimes get home from a 9-5 schedule, and start scrolling on TikTok to relax. They oftentimes see recipes that they would like to make, and this app turns every potential scroll into an actionable recipe.
 
-For prior hackathons, we tried integrating test payment features for cross-platform app. We spent a majority of our time trying to mess around with StoreKit, but with RevenueCat we were able to easily integrate a payment screen. Learning how to leverage external platforms to streamline a lot of features that aren't as intuitive natively (like RevenueCat and Gemini) will prove really useful in future projects.
+And for people managing allergies (or dietary restrictions), every new recipe requires manually scanning through a dozen ingredient lists for a single allergen. My friends often have trouble finding kosher or vegetarian options.
 
-# What's next for Crave
+The gap between "I want to cook this" and "I'm actually cooking this" is a planning problem. Crave is designed to close it.
 
-## Instagram and Youtube
+---
 
-We are working on expanding our video imports to other mainstream platforms such as Youtube and Instagram, so users can add recipes as they come across them.
+## What Crave Does
 
-## Notification System
-We will be implementing smart notifications that gently remind you about recipes you’ve saved and help you actually make them. If you’re missing ingredients, Crave will surface a quick, organized shopping list right when it matters—like before a grocery run or while you’re at the store. The reminders will learn your habits over time so they stay helpful, not annoying. Notifications will also highlight pantry items reaching the end of their shelf lives, allowing users to reduce waste and save money.
-## Food Preference Recognition
-We'll analyze recipes users end up fully completing, and suggest recipes that we think will match their taste preferences. Crave will help users discover new favorites that they'll cook over and over.
-## Maps Integration
-To make cooking even easier, Crave will map out your grocery trips, finding the nearest and cheapest stores. We'll ensure items are in stock and at the best price point, making the shopping experience efficent and effortless.
+Crave is a native iOS app that connects the entire journey from recipe discovery to dinner on the table across five systems:
+
+**Universal Recipe Import**: Share any website link or TikTok. Our app extracts a clean, structured recipe card. For video content, our AI backend processes both audio and visuals to identify ingredients, steps, and timing with no manual entry.
+
+**Smart Pantry Management**: Point your camera at your fridge or pantry shelf and Crave's computer vision (Google Gemini Vision) identifies every ingredient in the frame, organized across Fridge, Freezer, and Pantry zones. The system then surfaces what you can cook _right now_ with zero extra shopping.
+
+**Spice It Up**: Sometimes I want to make a dish spicier, or add a bit more tang. That's why we created a 'spice it up' feature. Select any saved recipe, tap "Spice It Up," and Crave's AI suggests modifications based off what you own in your pantry: add heat with chili flakes you already have, boost protein with leftover chicken, deepen umami with the soy sauce in your cabinet door. We wanted to make it easy to create variety in meals, with no effort.
+
+**AI Recipe Generation**: Tell us what cuisine you're CRAVE-ing (get it?) and it generates a full recipe optimized around your pantry. Want something high-protein on a weeknight? Specify it. The result isn't pulled from a static database, but rather it reasons over your actual inventory and produces something you can genuinely cook tonight, with a grocery list for the gaps.
+
+**Allergen Awareness**: Every recipe Crave imports, generates, or modifies is automatically scanned against major allergen groups. Users set their profile once during onboarding; from that point on, Crave treats allergen constraints as hard requirements. A peanut allergy user will never see a Spice It Up recommendation that involves peanut oil.
+
+We've also integrated a community feature through an explore feed, where you can see user-submitted recipes and save them for your own cooking.
+
+---
+
+## Monetization
+
+Crave runs a freemium model managed through RevenueCat.
+
+**Free:** 5 recipe imports/month, 10 AI pantry scans/month, unlimited manual entry, full allergen screening, full grocery list and Explore access.
+
+**Crave Pro ($9.99/month) or (79.99/year):** Unlimited imports, scans, Spice It Up suggestions, and AI recipe generation. Priority support and early access to new features.
+
+The free tier is genuinely useful for a casual home cook. Limits are placed specifically on the AI-heavy features (video processing, camera scanning, generative recipes) where real cost exists. Weekly meal planners and households cooking new recipes regularly will hit those limits and find Pro worth it.
+
+There is also a **14 day free trial** for users to experience 14 days of the premium features!
+
+---
+
+## Tech Stack
+
+| Layer       | Technology                           |
+| ----------- | ------------------------------------ |
+| Frontend    | SwiftUI (native iOS)                 |
+| Auth        | Firebase Auth (Email, Apple, Google) |
+| Database    | Cloud Firestore. Firestore for image storage                      |
+| AI / Vision | Google Gemini 2.5 Flash/Pro              |
+| Payments    | RevenueCat                           |
+| Backend     | Firebase Cloud Functions, Docker, Python, OpenAI Whisper, Google Cloud Project             |
+
+---
+
+## What sets Crave apart
+
+Most recipe apps are just databases with a search bar. Crave is a cooking assistant that meets users where they are: on their phone, watching food content, standing in front of an open fridge, trying to figure out what's for dinner.
+
+The Spice It Up engine, allergen-aware generation, and pantry-first recipe logic are features weaved throughout our app. The whole system is designed around one outcome: you open Crave with an idea, and thirty minutes later you're eating something you actually wanted to make.
+
+Crave delivers it.
