@@ -24,15 +24,9 @@ Extract a recipe from a URL (website or video).
   "description": "Classic recipe...",
   "image": "https://...",
   "ingredients": [
-    {
-      "item": "flour",
-      "quantity": "2 cups"
-    }
+    { "item": "flour", "quantity": "2 cups" }
   ],
-  "instructions": [
-    "Preheat oven...",
-    "Mix dry ingredients..."
-  ],
+  "instructions": ["Preheat oven...", "Mix dry ingredients..."],
   "prep_time": "15 minutes",
   "cook_time": "12 minutes",
   "servings": "24 cookies"
@@ -41,134 +35,59 @@ Extract a recipe from a URL (website or video).
 
 #### Flow
 
-1. **URL Detection**: Determines if URL is video (YouTube/TikTok/Instagram) or website
-2. **Video Path**:
-   - Downloads audio via `yt-dlp`
-   - Sends audio to Gemini for transcription + extraction
-3. **Website Path**:
-   - Fetches HTML content
-   - Sends HTML to Gemini for structured extraction
-4. **Structured Output**: Returns standardized recipe JSON
-
-#### Supported Platforms
-
-**Video:**
-- YouTube
-- TikTok
-- Instagram Reels
-
-**Websites:**
-- Any recipe website with structured data
-- Food blogs
-- Personal recipe pages
+1. **URL Detection**: Checks for youtube.com, youtu.be, tiktok.com, instagram.com
+2. **Video Path**: yt-dlp downloads audio (with cookies + Deno) → Gemini Files API → Gemini 2.0 Flash extracts recipe
+3. **Website Path**: Fetches HTML (truncated to 30K chars) → Gemini 2.0 Flash extracts recipe
+4. **Output**: Standardized recipe JSON
 
 ### `POST /cancel-subscription`
 
 Cancel a user's RevenueCat subscription via the V2 API.
 
-#### Request
-
 ```json
-{
-  "uid": "firebase-user-id"
-}
+{ "uid": "firebase-user-id" }
 ```
 
-#### Response
-
-```json
-{
-  "success": true,
-  "message": "Subscription cancelled"
-}
-```
+Lists subscriptions, finds active one, cancels it. Subscription remains active until end of billing period.
 
 ### `GET /health`
 
-Health check endpoint.
+Returns `{"status": "ok"}`.
 
-#### Response
+### `GET /`
 
-```json
-{
-  "status": "healthy",
-  "timestamp": "2026-02-12T10:30:00Z"
-}
-```
+Returns `{"message": "Crave Backend is Running!"}`.
 
-## Error Handling
-
-### Standard Error Response
-
-```json
-{
-  "detail": "Error message describing what went wrong"
-}
-```
-
-### Common Error Codes
+## Error Codes
 
 | Code | Meaning |
 |------|---------|
-| `400` | Bad request (invalid URL, missing parameters) |
-| `404` | Resource not found |
-| `429` | Rate limit exceeded |
-| `500` | Internal server error |
-| `503` | Service unavailable (Gemini API down) |
-
-## Rate Limiting
-
-The backend does not currently implement rate limiting. Usage is gated on the client side via RevenueCat subscription checks.
-
-**Future consideration:**
-- Add per-user rate limiting
-- Implement Redis-based quota tracking
-- Return `429` when limits exceeded
-
-## Authentication
-
-Currently, the API is **unauthenticated**. All requests are accepted.
-
-**Security considerations:**
-- Add Firebase Auth token verification
-- Validate user ID in request body matches token
-- Rate limit by user ID
+| `400` | Invalid URL or missing parameters |
+| `404` | No subscriptions found |
+| `500` | Internal error (Gemini failure, download failure) |
 
 ## Environment Variables
 
-| Variable | Description |
-|----------|-------------|
-| `GEMINI_API_KEY` | Google Gemini API key |
-| `REVENUECAT_V2_API_KEY` | RevenueCat server-side V2 API key |
-| `REVENUECAT_PROJECT_ID` | RevenueCat project identifier |
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `GEMINI_API_KEY` | Google Gemini API key | Yes |
+| `REVENUECAT_V2_API_KEY` | RevenueCat server-side V2 API key | Yes |
+| `REVENUECAT_PROJECT_ID` | RevenueCat project identifier | Yes |
+| `YOUTUBE_COOKIES_B64` | Base64-encoded cookies.txt for yt-dlp | No |
 
 ## Deployment
 
-### Docker Build
+The Dockerfile installs Python 3.11-slim, FFmpeg, and Deno (for yt-dlp extractor scripts).
 
 ```bash
 docker build -t gcr.io/PROJECT_ID/crave-backend ./backend
 docker push gcr.io/PROJECT_ID/crave-backend
-```
 
-### Cloud Run Deploy
-
-```bash
 gcloud run deploy crave-backend \
   --image gcr.io/PROJECT_ID/crave-backend \
   --platform managed \
   --region us-central1 \
-  --set-env-vars GEMINI_API_KEY=...,REVENUECAT_V2_API_KEY=...,REVENUECAT_PROJECT_ID=...
-```
-
-### Environment Setup
-
-Create `.env` file in `backend/` directory:
-
-```env
-GEMINI_API_KEY=your_key_here
-REVENUECAT_V2_API_KEY=your_key_here
-REVENUECAT_PROJECT_ID=your_project_id
+  --allow-unauthenticated
 ```
 
 ## Local Development
@@ -177,40 +96,18 @@ REVENUECAT_PROJECT_ID=your_project_id
 cd backend
 pip install -r requirements.txt
 uvicorn main:app --reload
-```
-
-Server runs on `http://localhost:8000`
-
-### Testing the API
-
-```bash
-# Health check
-curl http://localhost:8000/health
-
-# Extract recipe
-curl -X POST http://localhost:8000/extract \
-  -H "Content-Type: application/json" \
-  -d '{"url": "https://example.com/recipe"}'
+# http://localhost:8000
 ```
 
 ## Dependencies
 
-From `requirements.txt`:
-
 ```
-fastapi
-uvicorn[standard]
-google-generativeai
-yt-dlp
-ffmpeg-python
-requests
-python-dotenv
+fastapi>=0.109.2
+uvicorn>=0.27.1
+yt-dlp>=2024.04.09
+google-generativeai>=0.5.0
+python-dotenv>=1.0.1
+python-multipart>=0.0.9
+ffmpeg-python>=0.2.0
+requests>=2.31.0
 ```
-
-## API Design Principles
-
-1. **Simple REST**: Standard HTTP verbs and JSON payloads
-2. **Stateless**: No session management, each request is independent
-3. **Fast Fail**: Return errors quickly rather than hanging
-4. **Structured Output**: Consistent JSON schema across all responses
-5. **Idempotent**: Repeated calls with same input produce same output

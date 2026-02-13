@@ -2,11 +2,20 @@
 
 ## Recipe Import Flow
 
-The user pastes a URL into `RecipeImportView` and taps Import. Before anything hits the network, `SubscriptionManager` checks whether the user has remaining imports. If the limit is reached, the RevenueCat paywall is shown and the flow stops there.
+The user pastes a URL into `RecipeImportView` (or shares via the CraveShare extension). `SubscriptionManager` checks whether the user has remaining imports. If the limit is reached, the paywall is shown.
 
-If the user has imports available, the URL is sent to the backend via `POST /extract`. The backend inspects the URL to determine whether it points to a video (YouTube, TikTok, Instagram Reels) or a standard website. For video URLs, yt-dlp downloads the audio track and forwards it to Google Gemini. For website URLs, the backend fetches the raw HTML and sends that to Gemini instead. Either way, Gemini returns a structured recipe JSON object with title, ingredients, steps, and timing.
+If imports are available, the URL is sent to the backend via `POST /extract`. The backend determines whether the URL is a video (YouTube, TikTok, Instagram) or a website. For video URLs, yt-dlp downloads the audio track and forwards it to Gemini 2.0 Flash. For websites, the HTML is fetched and sent to Gemini. Either way, a structured recipe JSON is returned.
 
-The structured data comes back to the client, the import counter is incremented in `@AppStorage`, and the user sees a preview card. If they confirm, the recipe is saved to Firestore at `users/{uid}/recipes`.
+The client receives the response via `RecipeService.importFromBackend()`, which uses a flexible decoder that handles multiple JSON key formats. The import counter is incremented and the recipe is saved to `users/{uid}/recipes`.
+
+## AI Recipe Generation Flow
+
+1. User opens `GenerateRecipeView` and picks a cuisine category
+2. `GenerateRecipeViewModel` builds a prompt (including allergen restrictions if set)
+3. Gemini 2.0 Flash returns a structured recipe JSON
+4. Recipe is parsed, then auto-tagged via a second Gemini call
+5. Time-based tags (Quick, Under 1hr) are inferred from prep+cook time
+6. Recipe is saved to Firestore
 
 ## Ingredient Scan Flow
 
@@ -17,7 +26,7 @@ sequenceDiagram
     participant SM as SubscriptionManager
     participant SV as ScannerView
     participant SR as ScanResultView
-    participant GS as GeminiService
+    participant GS as GeminiService (2.5 Pro)
     participant FS as Firestore
 
     U->>PV: Tap + → Scan Item
@@ -30,64 +39,56 @@ sequenceDiagram
         PV->>SV: Open camera
         SV->>SR: Pass captured image
         SR->>GS: analyzeImage(UIImage)
-        GS-->>SR: Detected ingredients
+        GS-->>SR: Detected ingredients with categories
         SR->>SM: incrementScan()
         U->>SR: Tap + to add items
         SR->>FS: Save to pantry
     end
 ```
 
-### Step-by-Step Breakdown
-
-1. **User Action**: User taps "Scan Item" in pantry
-2. **Permission Check**: `SubscriptionManager` verifies scan limit
-3. **Paywall Gate**: If limit reached, show paywall
-4. **Camera Launch**: Open `ScannerView` with camera permission
-5. **Image Capture**: User takes photo of ingredients
-6. **AI Analysis**: On-device Gemini Vision analyzes the image
-7. **Results Display**: Show detected ingredients in `ScanResultView`
-8. **Usage Tracking**: Increment scan counter
-9. **Manual Refinement**: User can edit detected items
-10. **Save**: Add confirmed items to Firestore pantry collection
+The image is resized to max 1536px and compressed to JPEG (0.8 quality) before being sent to Gemini 2.5 Pro. Up to 50 items per scan. Retry logic with exponential backoff handles rate limits.
 
 ## Authentication Flow
 
 ```
-User taps "Sign In with Google"
+User taps "Sign In with Google" (or Email/Password)
     ↓
-GoogleSignIn SDK presents OAuth flow
+GoogleSignIn SDK presents OAuth (or Firebase email auth)
     ↓
-User authorizes in Google's UI
+Exchange with Firebase Auth
     ↓
-App receives Google ID token
+AuthService.user @Published updates
     ↓
-Exchange token with Firebase Auth
+OnboardingCheckView (per-user AppStorage key)
     ↓
-Firebase returns user credential
-    ↓
-AuthService updates @Published user state
-    ↓
-App navigates to ContentView
+ContentView or OnboardingView
 ```
+
+## Explore Feed Flow
+
+```
+RecipeService.startExploreListening()
+    ↓
+Firestore: recipes where isPublic == true (limit 50)
+    ↓
+Client-side filter: exclude current user's recipes
+    ↓
+Client-side sort: by createdAt descending
+    ↓
+HomeView with tag-based filtering
+```
+
+Users can:
+- **Post to feed**: copies recipe to global `recipes` collection
+- **Remove from feed**: deletes from global collection
+- **Save from explore**: creates a private copy with new UUID
 
 ## Real-time Sync
 
 Firestore listeners maintain live connections:
 
-```
-App Launch
-    ↓
-Service layer attaches listeners
-    ↓
-Firestore pushes updates via WebSocket
-    ↓
-@Published properties update
-    ↓
-SwiftUI views re-render automatically
-```
-
 **Collections with active listeners:**
 - `users/{uid}/recipes`
 - `users/{uid}/pantry`
 - `users/{uid}/grocery`
-- `public/recipes` (for Explore feed)
+- `recipes` where `isPublic == true` (Explore feed)

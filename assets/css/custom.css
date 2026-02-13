@@ -86,21 +86,21 @@ h1, h2, h3, h4, h5, h6,
 }
 
 h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 h2 {
-  font-size: 2.25rem;
-  margin-top: 1.75rem;
-  margin-bottom: 1rem;
+  font-size: 1.875rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.875rem;
 }
 
 h3 {
-  font-size: 1.75rem;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.875rem;
 }
 
 /* Monospace for code and technical elements */
@@ -358,7 +358,7 @@ html.dark .hextra-theme-toggle-options p:hover {
 .hextra-navbar-title {
   font-family: var(--font-serif) !important;
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: var(--text-header, var(--text-primary));
 }
 
@@ -376,7 +376,7 @@ html.dark .hextra-theme-toggle-options p:hover {
 }
 
 .hextra-hero h1 {
-  font-size: 4rem;
+  font-size: 3.25rem;
   font-family: var(--font-serif);
   font-weight: 700;
   line-height: 1.1;
@@ -384,7 +384,7 @@ html.dark .hextra-theme-toggle-options p:hover {
 }
 
 .hextra-hero p {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   color: var(--text-secondary);
   max-width: 600px;
 }
@@ -445,19 +445,19 @@ html.dark tbody tr:hover {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
 
   h2 {
-    font-size: 1.875rem;
+    font-size: 1.5rem;
   }
 
   .hextra-hero h1 {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
   }
 
   .hextra-hero p {
-    font-size: 1.125rem;
+    font-size: 1rem;
   }
 }
 
@@ -472,7 +472,7 @@ html.dark tbody tr:hover {
 /* Improve readability */
 .prose, .hextra-content {
   line-height: 1.7;
-  font-size: 1.0625rem;
+  font-size: 0.9375rem;
 }
 
 .prose p {
