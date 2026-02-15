@@ -1,7 +1,7 @@
-# Overview
-
-> **Last Updated:** February 12, 2026
-> **Platform:** iOS 16+ | **Backend:** Google Cloud Run
+---
+title: Overview
+weight: 1
+---
 
 ## What is Crave?
 
@@ -24,6 +24,7 @@ Users can:
 ## Business Model
 
 The app follows a **freemium model** with:
+
 - 5 recipe imports per month (free tier)
 - 10 ingredient scans per month (free tier)
 - Unlimited imports and scans with **Crave Pro** subscription

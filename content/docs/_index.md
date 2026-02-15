@@ -9,25 +9,26 @@ Welcome to the comprehensive technical documentation for Crave, the AI-powered r
 ## Getting Started
 
 {{< cards >}}
-  {{< card link="overview" title="Overview" icon="book-open" >}}
-  {{< card link="tech-stack" title="Tech Stack" icon="code" >}}
-  {{< card link="architecture" title="Architecture" icon="puzzle" >}}
+{{< card link="overview" title="Overview" icon="book-open" >}}
+{{< card link="features" title="App Features" icon="star" >}}
+{{< card link="tech-stack" title="Tech Stack" icon="code" >}}
+{{< card link="architecture" title="Architecture" icon="puzzle" >}}
 {{< /cards >}}
 
 ## Core Systems
 
 {{< cards >}}
-  {{< card link="data-flow" title="Data Flow" icon="chart-bar" >}}
-  {{< card link="revenuecat" title="RevenueCat" icon="credit-card" >}}
-  {{< card link="backend-api" title="Backend API" icon="server" >}}
+{{< card link="data-flow" title="Data Flow" icon="chart-bar" >}}
+{{< card link="revenuecat" title="RevenueCat" icon="credit-card" >}}
+{{< card link="backend-api" title="Backend API" icon="server" >}}
 {{< /cards >}}
 
 ## Design & Deployment
 
 {{< cards >}}
-  {{< card link="design-system" title="Design System" icon="sparkles" >}}
-  {{< card link="configuration" title="Configuration" icon="cog" >}}
-  {{< card link="deployment" title="Deployment" icon="cloud" >}}
+{{< card link="design-system" title="Design System" icon="sparkles" >}}
+{{< card link="configuration" title="Configuration" icon="cog" >}}
+{{< card link="deployment" title="Deployment" icon="cloud" >}}
 {{< /cards >}}
 
 ---

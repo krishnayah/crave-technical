@@ -1,25 +1,25 @@
 /* Crave Technical Documentation Custom Styles */
 
 /* Import elegant serif and monospace fonts */
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap");
 
 :root {
   /* Light mode colors - Super light cream with dark blue/black text */
-  --color-light-bg: #FAF8F3;
-  --color-light-surface: #F5F2EC;
+  --color-light-bg: #faf8f3;
+  --color-light-surface: #f5f2ec;
   --color-light-text: #000000;
-  --color-light-text-header: #0A1628;
+  --color-light-text-header: #0a1628;
   --color-light-text-secondary: #4a4a4a;
-  --color-light-border: #E5E2DC;
+  --color-light-border: #e5e2dc;
 
   /* Dark mode colors - Warm charcoal to complement the cream light mode */
-  --color-dark-bg: #1C1917;
+  --color-dark-bg: #1c1917;
   --color-dark-surface: #252220;
-  --color-dark-card: #2E2A27;
-  --color-dark-text: #E7E5E4;
-  --color-dark-text-header: #F5F5F4;
-  --color-dark-text-secondary: #A8A29E;
-  --color-dark-border: #3D3835;
+  --color-dark-card: #2e2a27;
+  --color-dark-text: #e7e5e4;
+  --color-dark-text-header: #f5f5f4;
+  --color-dark-text-secondary: #a8a29e;
+  --color-dark-border: #3d3835;
 
   /* Wine accent color */
   --color-wine: #8b2b47;
@@ -27,13 +27,13 @@
   --color-wine-dark: #6b1f35;
 
   /* Dark mode accent - warm rose, high contrast on charcoal */
-  --color-dark-accent: #D4727E;
-  --color-dark-accent-hover: #E08A94;
+  --color-dark-accent: #d4727e;
+  --color-dark-accent-hover: #e08a94;
 
   /* Fonts */
-  --font-serif: 'Crimson Pro', Georgia, serif;
-  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: "Crimson Pro", Georgia, serif;
+  --font-mono: "IBM Plex Mono", "Courier New", monospace;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
 }
 
 /* Light mode - Super light cream */
@@ -77,7 +77,12 @@ html:not(.dark) .prose {
 }
 
 /* Elegant serif headings */
-h1, h2, h3, h4, h5, h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 .hextra-heading {
   font-family: var(--font-serif) !important;
   font-weight: 600;
@@ -104,7 +109,10 @@ h3 {
 }
 
 /* Monospace for code and technical elements */
-code, pre, kbd, samp,
+code,
+pre,
+kbd,
+samp,
 .hextra-code,
 .filename {
   font-family: var(--font-mono) !important;
@@ -156,7 +164,9 @@ a:hover {
 .hextra-sidebar-list a {
   font-family: var(--font-sans);
   color: var(--text-secondary);
-  transition: color 0.2s ease, background-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .hextra-sidebar-list a:hover,
@@ -229,7 +239,8 @@ blockquote {
 }
 
 /* Buttons - themed */
-button, .button {
+button,
+.button {
   font-family: var(--font-sans);
   background: var(--accent-primary);
   color: white;
@@ -241,7 +252,8 @@ button, .button {
   transition: background 0.2s ease;
 }
 
-button:hover, .button:hover {
+button:hover,
+.button:hover {
   background: var(--accent-hover);
 }
 
@@ -256,7 +268,9 @@ button:hover, .button:hover {
   padding: 0.75rem 2rem;
   border-radius: 9999px;
   text-decoration: none !important;
-  transition: background 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    background 0.2s ease,
+    box-shadow 0.2s ease;
   cursor: pointer;
 }
 
@@ -269,12 +283,12 @@ button:hover, .button:hover {
 
 html.dark .crave-btn-primary {
   background: var(--color-dark-accent);
-  color: #1C1917 !important;
+  color: #1c1917 !important;
 }
 
 html.dark .crave-btn-primary:hover {
   background: var(--color-dark-accent-hover);
-  color: #1C1917 !important;
+  color: #1c1917 !important;
   box-shadow: 0 4px 16px rgba(212, 114, 126, 0.3);
 }
 
@@ -306,7 +320,7 @@ html.dark .crave-btn-secondary {
 
 html.dark .crave-btn-secondary:hover {
   background: var(--color-dark-accent);
-  color: #1C1917 !important;
+  color: #1c1917 !important;
 }
 
 /* Theme toggle - fix dark mode mismatch */
@@ -470,7 +484,8 @@ html.dark tbody tr:hover {
 }
 
 /* Improve readability */
-.prose, .hextra-content {
+.prose,
+.hextra-content {
   line-height: 1.7;
   font-size: 0.9375rem;
 }
@@ -480,7 +495,8 @@ html.dark tbody tr:hover {
 }
 
 /* Lists */
-ul, ol {
+ul,
+ol {
   margin: 1rem 0;
   padding-left: 1.5rem;
 }
@@ -513,4 +529,18 @@ hr {
   font-weight: 500;
   background: var(--accent-primary);
   color: white;
+}
+
+/* Custom Sidebar Styling for Top Items (Overview & App Features) */
+.hextra-scrollbar > ul > li:nth-child(1) > a,
+.hextra-scrollbar > ul > li:nth-child(2) > a {
+  font-weight: 700 !important;
+  color: var(--text-header) !important;
+  font-size: 1.05rem;
+}
+
+.hextra-scrollbar > ul > li:nth-child(2) {
+  margin-bottom: 1rem !important;
+  padding-bottom: 1rem !important;
+  border-bottom: 1px solid var(--border-color);
 }
