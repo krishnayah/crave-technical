@@ -554,3 +554,86 @@ hr {
     padding-bottom: 1rem !important;
     border-bottom: 1px solid var(--border-color);
 }
+
+/* =========================================
+   UI Polish & Animations
+   ========================================= */
+
+/* 1. Global Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 2. Page Content Fade-In Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hextra-content, .prose {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* 3. Enhanced Sidebar Interactions */
+.hextra-sidebar-container .hextra-sidebar-list a {
+  position: relative;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hextra-sidebar-container .hextra-sidebar-list a:hover {
+  transform: translateX(4px); /* Slight nudge on hover */
+}
+
+/* 4. Link Hover Effects (Underline expansion) */
+.prose a:not(.crave-btn-primary):not(.crave-btn-secondary):not(.hextra-card) {
+  position: relative;
+  text-decoration: none;
+  background-image: linear-gradient(var(--accent-primary), var(--accent-primary));
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  background-size: 0% 2px;
+  transition: background-size 0.3s ease, color 0.3s ease;
+}
+
+.prose a:not(.crave-btn-primary):not(.crave-btn-secondary):not(.hextra-card):hover {
+  background-size: 100% 2px;
+  color: var(--accent-hover);
+}
+
+/* 5. Card Hover Lift */
+.hextra-card, .hextra-feature-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.hextra-card:hover, .hextra-feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(139, 43, 71, 0.12);
+}
+
+html.dark .hextra-card:hover, 
+html.dark .hextra-feature-card:hover {
+  box-shadow: 0 8px 24px rgba(139, 43, 71, 0.25);
+}
+
+/* 6. Button Hover Scale */
+.crave-btn-primary, .crave-btn-secondary {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.crave-btn-primary:active, .crave-btn-secondary:active {
+  transform: scale(0.96);
+}
+
+
+/* =========================================
+   Fix Right Sidebar (TOC) Background
+   ========================================= */
+.hextra-toc .hx\:sticky.hx\:bottom-0 {
+    background-color: var(--bg-primary) !important;
+    box-shadow: 0 -12px 16px var(--bg-primary) !important;
+}
+
+/* Ensure dark mode uses the dark background variable correctly (it does via --bg-primary) */
+html.dark .hextra-toc .hx\:sticky.hx\:bottom-0 {
+    box-shadow: 0 -12px 16px var(--bg-primary) !important;
+}
