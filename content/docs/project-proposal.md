@@ -1,3 +1,8 @@
+---
+title: Project Proposal
+weight: 3
+---
+
 # CRAVE — FROM CRAVING TO COOKING
 
 _Written Proposal for the RevenueCat Shipyard 2026 Hackathon_
@@ -8,10 +13,11 @@ _Written Proposal for the RevenueCat Shipyard 2026 Hackathon_
 
 Food inspiration is everywhere. From YouTube videos, TikToks, Instagram reels, NYT Cooking articles, people are constantly saving recipes they swear they'll make "next week." They almost never do.
 
-We know this firsthand. We (David, Jordan, and Kyle) are college students at Rensselaer Polytechnic Institute living off-campus with no meal plan. We send each other cooking videos *constantly*, but we forget them just as fast. Vegetables rot in the back of the fridge. Duplicate groceries pile up. Dinner ends up being rice and whatever protein we can find.
+We know this firsthand. We (David, Jordan, and Kyle) are college students at Rensselaer Polytechnic Institute living off-campus with no meal plan. We send each other cooking videos _constantly_, but we forget them just as fast. Vegetables rot in the back of the fridge. Duplicate groceries pile up. Dinner ends up being rice and whatever protein we can find.
 
 ## Built for a broader audience
-This isn't just a college student problem. Families waste food because no one knows what's already in the pantry. 
+
+This isn't just a college student problem. Families waste food because no one knows what's already in the pantry.
 
 Our moms all personally struggle with the same five-meal rotation because turning a recipe idea into an actual grocery run feels like too much friction. After coming home from work, they just want to relax and not stress about finding good recipes. (In fact, some of our moms send us TikTok cooking reels!)
 
@@ -57,14 +63,14 @@ There is also a **14 day free trial** for users to experience 14 days of the pre
 
 ## Tech Stack
 
-| Layer       | Technology                           |
-| ----------- | ------------------------------------ |
-| Frontend    | SwiftUI (native iOS)                 |
-| Auth        | Firebase Auth (Email, Apple, Google) |
-| Database    | Cloud Firestore. Firestore for image storage                      |
-| AI / Vision | Google Gemini 2.5 Flash/Pro              |
-| Payments    | RevenueCat                           |
-| Backend     | Firebase Cloud Functions, Docker, Python, OpenAI Whisper, Google Cloud Project             |
+| Layer       | Technology                                                                     |
+| ----------- | ------------------------------------------------------------------------------ |
+| Frontend    | SwiftUI (native iOS)                                                           |
+| Auth        | Firebase Auth (Email, Apple, Google)                                           |
+| Database    | Cloud Firestore. Firestore for image storage                                   |
+| AI / Vision | Google Gemini 2.5 Flash/Pro                                                    |
+| Payments    | RevenueCat                                                                     |
+| Backend     | Firebase Cloud Functions, Docker, Python, OpenAI Whisper, Google Cloud Project |
 
 ---
 

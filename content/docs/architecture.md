@@ -1,3 +1,8 @@
+---
+title: Architecture
+weight: 100
+---
+
 # Architecture
 
 ## App Lifecycle
@@ -30,18 +35,18 @@ ContentView (TabView)
 
 ## Service Layer
 
-| Service | Responsibility |
-|---------|---------------|
-| `AuthService.shared` | Firebase Auth state, sign in/out, profile updates |
-| `RecipeService.shared` | Recipe CRUD, backend import, explore feed, post/remove from feed |
-| `DataService.shared` | Pantry + Grocery CRUD via Firestore |
-| `SubscriptionManager.shared` | RevenueCat state, usage tracking, paywall logic |
-| `GeminiService` | Dual-model AI: vision (2.5 Pro) + text (2.0 Flash) |
-| `StorageService.shared` | Firebase Storage image upload with resize/compression |
-| `NetworkMonitor.shared` | NWPathMonitor connectivity tracking |
-| `ImageCache.shared` | Two-tier image cache (memory + disk) |
-| `AllergenManager.shared` | Allergen preference storage and ingredient detection |
-| `AIDebugLogger.shared` | In-memory AI call logging for developer mode |
+| Service                      | Responsibility                                                   |
+| ---------------------------- | ---------------------------------------------------------------- |
+| `AuthService.shared`         | Firebase Auth state, sign in/out, profile updates                |
+| `RecipeService.shared`       | Recipe CRUD, backend import, explore feed, post/remove from feed |
+| `DataService.shared`         | Pantry + Grocery CRUD via Firestore                              |
+| `SubscriptionManager.shared` | RevenueCat state, usage tracking, paywall logic                  |
+| `GeminiService`              | Dual-model AI: vision (2.5 Pro) + text (2.0 Flash)               |
+| `StorageService.shared`      | Firebase Storage image upload with resize/compression            |
+| `NetworkMonitor.shared`      | NWPathMonitor connectivity tracking                              |
+| `ImageCache.shared`          | Two-tier image cache (memory + disk)                             |
+| `AllergenManager.shared`     | Allergen preference storage and ingredient detection             |
+| `AIDebugLogger.shared`       | In-memory AI call logging for developer mode                     |
 
 ## Design Patterns
 
@@ -50,6 +55,7 @@ ContentView (TabView)
 Views are thin. Business logic lives in ViewModels and Services.
 
 **ViewModels:**
+
 - `PantryViewModel` -- pantry items, filtering, sorting
 - `GroceryViewModel` -- grocery list management
 - `GenerateRecipeViewModel` -- AI recipe generation with auto-tagging
@@ -58,6 +64,7 @@ Views are thin. Business logic lives in ViewModels and Services.
 ### Singleton Services
 
 Core services accessed via `.shared`:
+
 - Single source of truth for app-wide state
 - Real-time listener management
 - Auth-scoped listener setup/teardown
