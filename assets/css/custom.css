@@ -532,24 +532,24 @@ hr {
 }
 
 /* Custom Sidebar Styling for Top Items (Overview, App Features, Project Proposal) */
-.hextra-scrollbar > ul > li:nth-child(1) > a,
-.hextra-scrollbar > ul > li:nth-child(2) > a,
-.hextra-scrollbar > ul > li:nth-child(3) > a {
+.hextra-sidebar-container .hextra-scrollbar > ul > li:nth-child(1) > a,
+.hextra-sidebar-container .hextra-scrollbar > ul > li:nth-child(2) > a,
+.hextra-sidebar-container .hextra-scrollbar > ul > li:nth-child(3) > a {
     font-weight: 700 !important;
     color: var(--accent-primary) !important; /* Changed to accent color */
     font-size: 1.05rem;
 }
 
 /* Remove default margins/padding from top items to fix spacing */
-.hextra-scrollbar > ul > li:nth-child(1),
-.hextra-scrollbar > ul > li:nth-child(2) {
+.hextra-sidebar-container .hextra-scrollbar > ul > li:nth-child(1),
+.hextra-sidebar-container .hextra-scrollbar > ul > li:nth-child(2) {
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
     border-bottom: none !important;
 }
 
 /* Apply separator ONLY after the 3rd item */
-.hextra-scrollbar > ul > li:nth-child(3) {
+.hextra-sidebar-container .hextra-scrollbar > ul > li:nth-child(3) {
     margin-bottom: 1rem !important;
     padding-bottom: 1rem !important;
     border-bottom: 1px solid var(--border-color);
